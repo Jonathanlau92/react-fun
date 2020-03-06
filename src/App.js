@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'
-import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   // state only works for class which extends component
@@ -56,19 +55,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
     let persons = null;
     if (this.state.showPersons){
       persons = (
@@ -84,11 +70,6 @@ class App extends Component {
           })}
         </div> 
       )
-      style.backgroundColor = "red";
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
     }
 
     let classes = [];
@@ -99,19 +80,16 @@ class App extends Component {
       classes.push('bold');
     }
 
-
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1> Hi, I'm a React app! </h1>
-          <p className={classes.join(' ')}> This is working </p>
-          <button style={style} onClick={this.togglePersonsHandler}>Switch name</button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1> Hi, I'm a React app! </h1>
+        <p className={classes.join(' ')}> This is working </p>
+        <button onClick={this.togglePersonsHandler}>Switch name</button>
+        {persons}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
 
